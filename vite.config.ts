@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import { configDefaults } from 'vitest/config';
-import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 const manualChunks = (id: string) => {
@@ -18,7 +18,7 @@ export default defineConfig({
     react(),
     viteTsconfigPaths(),
     svgrPlugin(),
-    TanStackRouterVite(),
+    tanstackRouter(),
     process.env.ANALYZE ? (visualizer({ open: true, gzipSize: true }) as PluginOption) : null,
   ],
   server: {
