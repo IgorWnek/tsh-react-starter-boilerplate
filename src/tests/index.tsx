@@ -84,5 +84,7 @@ function customRender<Q extends Queries>(
 
 // re-export everything
 export * from '@testing-library/react';
+export { screen, waitFor, act } from '@testing-library/react';
+export { renderHook } from '@testing-library/react';
 // override render method
 export { customRender as render };
