@@ -10,7 +10,7 @@ import { ExtendedQueryMeta } from 'api/types/types';
 import { StandardizedApiError } from 'context/apiClient/apiClientContextController/apiError/apiError.types';
 
 export type UseInfiniteQueryOptions<TQueryFnData = unknown, TError = StandardizedApiError, TPageParam = unknown> = Omit<
-  UseInfiniteRQQueryOptions<TQueryFnData, TError, InfiniteData<TQueryFnData>, TQueryFnData, QueryKey, TPageParam>,
+  UseInfiniteRQQueryOptions<TQueryFnData, TError, InfiniteData<TQueryFnData>, QueryKey, TPageParam>,
   'queryFn'
 > & {
   meta?: Partial<ExtendedQueryMeta>;

@@ -1,13 +1,15 @@
-import { useSearch, useNavigate } from '@tanstack/react-router';
+import { useNavigate, getRouteApi } from '@tanstack/react-router';
 
 import { CodeBlock } from 'ui/codeBlock/CodeBlock';
 import { useQuery } from 'hooks/useQuery/useQuery';
 import { UserSortType } from 'routes/users';
 import { authQueries } from 'api/actions/auth/auth.queries';
 
+const routeApi = getRouteApi('/users/');
+
 export const UsersList = () => {
-  const { sort, page } = useSearch({ from: '/users/' });
-  const navigate = useNavigate();
+  const { sort, page } = routeApi.useSearch();
+  const navigate = useNavigate({ from: '/users' });
 
   const { data: usersResponse, isFetched: areUsersFetched } = useQuery({
     ...authQueries.list({ page: page.toString() }),
@@ -18,9 +20,10 @@ export const UsersList = () => {
 
   const sortUsers = (type: UserSortType) => {
     navigate({
-      search: {
+      search: (prev) => ({
+        ...prev,
         sort: type,
-      },
+      }),
     });
   };
 
@@ -34,7 +37,7 @@ export const UsersList = () => {
   };
 
   const goToPrevPage = () => {
-    const newPage = page <= 1 ? undefined : page - 1;
+    const newPage = page <= 1 ? 1 : page - 1;
 
     navigate({
       search: (prev) => ({

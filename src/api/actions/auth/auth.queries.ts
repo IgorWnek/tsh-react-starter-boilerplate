@@ -42,6 +42,6 @@ export const authQueries = {
       queryKey: [...authQueries.listsInfinite(), params],
       queryFn: (client) => getUsersInfinite(client, params),
       initialPageParam: '1',
-      getNextPageParam: ({ nextPage }) => nextPage?.toString(),
+      getNextPageParam: ({ nextPage }: GetUsersResponse) => nextPage?.toString(),
     }),
 };
